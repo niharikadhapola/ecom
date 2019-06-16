@@ -1,0 +1,19 @@
+{% extends "user/vendor_base.html" %}
+ {% block content %}
+<div class="product_list">
+     {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success"> {{ message }}</div>
+      {% endfor %}
+{% endif %}
+<div class="card-group">
+{% for post in object_list %}
+  <img class="card-img-top" src="{{ post.img.url }}" style="width:200px; height: 200px;">
+  <div class="card-body">
+    <h4 class="card-title">{{post.name}}</h4>
+    <h4 class="card-text">Rs&nbsp;{{post.price}}</h4>
+  </div>
+
+            {% endfor %}
+    </div></div>
+{% endblock %}

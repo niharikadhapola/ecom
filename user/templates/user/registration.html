@@ -1,0 +1,51 @@
+{% extends "user/base.html" %}
+{% load staticfiles %}
+ {% block content %}
+<div class="upload">
+        <center>
+  <div class="sign_up_form">
+          <img src="{% static './user/img/i.png' %}" class="icon" height="100" width="100">
+
+      {% if registered %}
+        <h1>Thank you for registering!</h1>
+      {% else %}
+
+        <h1>Register Here</h1>
+        <h3>Just fill out the form.</h3>
+<form enctype="multipart/form-data" method="POST">
+ {% for error in  user_form.username.errors %}
+         <p class="text-danger">{{ error }}</p>
+    {% endfor %}
+     {% for error in  user_form.email.errors %}
+         <p class="text-danger">{{ error }}</p>
+    {% endfor %}
+     {% for error in  user_form.non_field_errors%}
+         <p class="alert alert-success">{{ error }}</p>
+    {% endfor %}
+
+          {% csrf_token %}
+    <label for="first_name"></label>
+              <input type="text" class="input-box" name="first_name" placeholder="first_name"><br>
+    <label for="last_name"></label>
+              <input type="text" class="input-box" name="last_name" placeholder="last_name"><br>
+    <label for="username"></label>
+              <input type="text" class="input-box" name="username" placeholder="Username"><br>
+<label for="password"></label>
+          <input type="password" class="input-box" name="password" placeholder="Password"><br>
+    <label for="confirm_password"></label>
+    <input type="password" class="input-box" name="confirm_password" placeholder="confirm_password"><br>
+    <label for="email"></label>
+          <input type="email" class="input-box" name="email" placeholder="email"><br>
+    <label for="address"></label>
+          <input type="address" class="input-box" name="address" placeholder="address"><br>
+              <button type="submit"class="btn btn-primary"><h3><strong>register</strong></h3></button> <br><br><br>
+    <a  href="{% url 'vendor_register' %}"><strong>vendor register</strong></a><br><br>
+    </h3>
+
+        </form>
+
+      {% endif %}
+
+    </div>
+</center></div>
+{% endblock %}

@@ -1,0 +1,235 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    <style>
+    .card-group,.card-img-top{
+     padding: 5px;5px;5px;
+    }
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: 100px;
+}
+    .h1{
+    color:#1c8adb;
+    }
+ .product_list{
+ width:1000px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 8% auto 0;
+ text-align: left;
+ }
+     .form{
+ width:400px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 8% auto 0;
+ text-align: center;
+ }
+  .feed_form{
+ width:1000px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 8% auto 0;
+ text-align: center;
+ }
+
+ .sign_up_form{
+ width:350px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 8% auto 0;
+ text-align: center;
+ }
+
+.footer-color
+{
+color:white;
+}
+ .icon{
+ margin-top: -50px;
+ }
+
+body{
+background-repeat:no-repeat;
+ background-image: url("{% static './user/img/spot.jpg' %}");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: sans-serif;
+
+}
+
+.input-box{
+border-radius: 20px;
+padding 10px;
+ margin : 10px 0;
+ width:70%;
+ border:1px solid #999;
+outline: none;
+}
+button{
+border-radius: 20px;
+padding 10px;
+ margin : 10px 0;
+ width:70%;
+ border:1px solid #999;
+outline: none;
+background-color:#1c8adb;
+}
+.nih{
+color:white
+
+}
+    .upload{
+  padding-top: 10px;
+
+    }
+
+    .nav-link{
+    color:white
+    }
+
+.navbar{
+   background-color: black;
+}
+.nav-link:hover {
+  background-color: #1c8adb;
+   transition: 0.3s;
+}
+.page-footer {
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+}
+
+    </style>
+</head>
+  <body><h3>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <nav class="navbar fixed-top  ">
+{# Django Home Link / Admin Link / Register Link#}
+
+          {# Some logic on what to display for last item#}
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'show_vendor_detail' %}"> <strong>my list</strong> </a>
+            <a class="nav-link" href="{% url 'detail' %}"> <strong>detail</strong> </a>
+
+            <a class="nav-link" href="{% url 'logout' %}"><strong>Logout</strong></a>
+          <a style="color :white"><strong>{{ user.username }}</strong></a>
+
+<!--            <a class="nav-link" href="{% url 'post' %}"> <strong>post</strong> </a>-->
+
+            {% else %} <a class="nav-link" href="{% url 'register' %}"><strong>Register</strong></a>
+            <a class="nav-link" href="{% url 'user_login' %}"> <strong>login</strong>  </a>
+            <a class="nav-link" href="{% url 'vendor_login' %}"> <strong>vendor login</strong>  </a>
+
+
+{% endif %}
+    </nav><br><br><br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+ {% block content %}
+    {% endblock %}
+
+     <br><br><br><br><br><br>
+     <!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+    <div class="footer-color">
+<h3>
+<strong>
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">ecom site</h5>
+        <p>The most trusted site contains branded items and attractive offers</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">google</a>
+          </li>
+          <li>
+            <a href="#!">yahoo</a>
+          </li>
+
+
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">facebook</a>
+          </li>
+          <li>
+            <a href="#!">twitter</a>
+          </li>
+
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="http://127.0.0.1:8000/user/"> Mysite</a>
+  </div>
+  <!-- Copyright -->
+</strong></h3></div>
+</footer>
+<!-- Footer -->
+    <!-- Latest compiled and minified CSS --></h3>
+  </body>
+</html>

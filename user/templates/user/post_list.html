@@ -1,0 +1,19 @@
+<!--show list of all feedback-->
+{% extends "user/base.html" %}
+ {% block content %}
+    <table border="2" width="1000" >
+        <tr>
+            <th>&nbsp;&nbsp;name&nbsp;&nbsp;</th>
+            <th>&nbsp;&nbsp;phone no.&nbsp;&nbsp;</th>
+            <th>&nbsp;&nbsp;description&nbsp;&nbsp;</th>
+        </tr>
+       {% for post in object_list %}
+        <tr>
+            <td>&nbsp;&nbsp; {{post.name}}&nbsp;&nbsp;</td>
+            <td> &nbsp;&nbsp;{{post.phone}}&nbsp;&nbsp;</td>
+            <td>&nbsp;&nbsp; {{post.describe}}&nbsp;&nbsp;</td>
+        </tr>
+
+            {% endfor %}</table>
+
+{% endblock %}

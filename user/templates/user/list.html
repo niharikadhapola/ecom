@@ -1,0 +1,17 @@
+
+<!--show items to cart as per the user, who added it to cart-->
+{% extends "user/base.html" %}
+ {% block content %}
+<div class="product_list">
+<div class="card-group">
+{% for post in object_list %}
+
+  <img class="card-img-top" src="{{ post.item.img.url }}" style="width:200px; height: 200px;">
+  <div class="card-body">
+    <h4 class="card-title">{{post.item.name}}</h4>
+    <h4 class="card-text">Rs&nbsp;{{post.item.price}}</h4>
+  </div>
+
+            {% endfor %}
+    </div></div>
+{% endblock %}

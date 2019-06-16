@@ -1,0 +1,17 @@
+<!--add items to cart-->
+{% extends "user/base.html" %}
+ {% block content %}
+          {% if user.is_authenticated %}
+
+
+<div class="feed_form">
+  <form method="post" >
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">added</button>     </form>
+
+{% else %}
+
+{% endif %}
+</div>
+{% endblock %}
