@@ -1,0 +1,11 @@
+{% extends "user/product_base.html" %}
+ {% block content %}
+
+    <div class="container" style=" height:100px;">
+      <form method="post">{% csrf_token %}
+          <br><br>
+        Are you sure you want to delete  ?
+        <input class="btn btn-danger" type="submit" value="Yes">
+      </form>
+    </div>
+{% endblock %}

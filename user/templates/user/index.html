@@ -1,17 +1,39 @@
 <!--show all uploaded items-->
-{% extends "user/base.html" %}
+
+{% extends "user/product_base.html" %}
+
  {% block content %}
-<div class="product_list">
-<div class="card-group">
-{% for post in object_list %}
+{% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success"> {{ message }}</div>
+      {% endfor %}
+{% endif %}
+<div class="container">
+    <h2 style="font-family:sans-serif;">Products</h2>
+<div class="row">
 
-  <img class="card-img-top" src="{{ post.img.url }}" style="width:200px; height: 200px;" alt="Card image cap">
-  <div class="card-body">
-    <h4 class="card-title">{{post.name}}</h4>
-    <h4 class="card-text">Rs&nbsp;{{post.price}}</h4>
-      <a href="{% url 'add_cart' post.id %}" class="btn btn-info btn-sm"><h5>add to cart</h5></a><br>
-  </div>
+{% for post in object_list  %}
+    <div class="col-md-3" >
+        <div class="product-top" ><a href="{% url 'all' post.id %}">
+            <img src="{{ post.img.url }}" style="width:200px; height: 250px;" alt="Card image cap"></a><br>
+            <div class="overlay">
+             <a href="{% url 'add_cart' post.id %}" class="btn btn-secondary"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+<!--        <a href="#" class="btn btn-secondary"><i class="fa fa-heart-o" aria-hidden="true"></i></i></a>-->
+            </div>
+            <div class="product-bottom"><br>
+    <h3 class="text-uppercase">{{post.name}}</h3>
+                <h5 >Rs&nbsp;{{post.price}}</h5>
+<!--                            <h4> vendor: {{post.vendor_name.username}}</h4>-->
+                <a href="{% url 'buyorder' post.id %}" class="btn btn-primary" style="width:200px;"><h4>Buy now</h4></a><br><br>
 
-            {% endfor %}
-    </div></div>
+     <br>
+
+            <br>
+            </div>
+        </div> </div>
+
+    {% endfor %}</div>
+    </div>
+
+
 {% endblock %}

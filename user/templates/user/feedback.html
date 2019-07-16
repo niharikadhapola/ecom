@@ -1,26 +1,31 @@
 <!--feedback form-->
-{% extends "user/base.html" %}
+{% extends "user/product_base.html" %}
  {% block content %}
-{% if user.is_authenticated %}
-
-{% else %}
-
-
 <div class="feed_form">
-             <h2>feedback form !</h2><br>
+
 
      <form  method="post">{% csrf_token %}
-          {{ form.as_p }}
+<center>
+     {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success"> {{ message }}</div>
 
+      {% endfor %}
+{% endif %}
+    <h2>Feedback Form !</h2><br>
+          <input type="text" class="form-control" name="name" placeholder="name" required style="width :300px;font-size: 18px;"><br>
 
+          <input type="text" class="form-control" name="phone" placeholder="phone" required style="width :300px;font-size: 18px;"><br>
 
-
+    <textarea class="form-control" name="describe" placeholder="write your feedback here " required style="width :300px;height:200px;font-size: 18px;"></textarea><br>
 
         <input class="btn btn-primary" type="submit" value="Submit"/>
-      </form><br><br>
+</center>   </form><br><br>
 
 </div>
-{% endif %}
+
+
+
 
 
 {% endblock %}

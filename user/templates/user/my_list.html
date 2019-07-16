@@ -1,0 +1,26 @@
+{% extends "user/product_base.html" %}
+ {% block content %}
+<div class="container" style="height:200px;width:700px; padding:30px;">
+        <h1> Your Personal Detail</h1><br>
+{% for host in list %}
+
+    Name: {{ host.first_name}}&nbsp;
+        <a href="{% url 'update_User' host.id %}" class="btn btn-success" style="height:30px; width:70px;"><h4>EDIT</h4></a><br><br>
+       {% endfor %}
+    {% for post in object_list %}
+              Address:&nbsp;{{post.address}}
+
+
+              &nbsp;<a href="{% url 'post_edit' post.id %}" class="btn btn-success" style="height:30px; width:70px;"><h4>EDIT</h4></a>
+{{post.category}}
+{% if post.category == 'vendor' %}
+    <h1>him</h1>
+{% else %}
+    <h3>hello</h3>
+{% endif %}
+
+
+          {% endfor %}
+
+    </div>
+{% endblock %}

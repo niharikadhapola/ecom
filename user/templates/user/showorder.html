@@ -1,0 +1,58 @@
+{% extends "user/vendor_base.html" %}
+
+ {% block content %}
+
+<div class="container"><br><br>
+  <h3>Product List</h3><br>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Buyer Name</th>
+        <th>Adress</th>
+        <th>State</th>
+          <th>Phone</th>
+          <th>Price</th>
+          <th>Item </th>
+
+      </tr>
+    </thead>
+    <tbody>
+{% for post in object_list  %}
+      <tr>
+        <td>{{post.delieve.name }}</td>
+        <td>{{post.delieve.address }}</td>
+        <td>{{post.delieve.state }}</td>
+          <td>{{post.delieve.phone }}</td>
+          <td>{{post.Total_price}}</td>
+<td>
+{% for item in post.item.all %}
+          <img src="{{item.img.url}}" style="width:20px; height: 40px;" alt="Card image cap">&nbsp;{{ item.name }}&nbsp;&nbsp;
+          {% endfor %}</td>
+          {% endfor %}
+
+      </tr>
+{% for post in object %}
+
+
+
+      <tr>
+        <td>{{post.delieve.name}}</td>
+        <td>{{post.delieve.address }}</td>
+        <td>{{post.delieve.state}}</td>
+          <td>{{post.delieve.phone }}</td>
+          <td>{{post.buyer_item.price}}</td>
+          <td><img src="{{post.buyer_item.img.url}}" style="width:20px; height: 25px;" alt="Card image cap">
+          {{post.buyer_item.name}}</td>
+
+
+      </tr>
+ {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+
+
+{% endblock %}

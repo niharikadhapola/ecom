@@ -8,23 +8,27 @@
 
     <div class="upload">
 
-
+<center>
 <div class="form">
   <form method="post" enctype="multipart/form-data">
+       <br><h2 style="font-family:sans-serif;">Upload Products</h2>
         {% if messages %}
       {% for message in messages %}
       <div class="alert alert-success"> {{ message }}</div>
       {% endfor %}
 {% endif %}
       {% csrf_token %}<br>
-      <h3>{{form.as_p}}</h3><br>
+<center>
+ <input type="text" class="form-control" placeholder="Name" name= "name" required style="width :250px;font-size: 18px;"><br>
+ <input type="text" class="form-control" placeholder="Price" name= "price" required style="width :250px;font-size: 18px;"><br>
+ <input type="file"  placeholder="Upload" name= "img" required style="width :250px;font-size: 18px"><br>
 
 
+</center><br>
 
 
-
-      <button type="submit"class="btn btn-primary"><h2><strong>Upload</strong></h2></button> <br><br>    </form>
-</div></div>
+      <button type="submit" class="btn btn-primary"><h2><strong>Upload</strong></h2></button> <br><br>    </form>
+</div></center></div>
 {% else %}
 
 {% endif %}

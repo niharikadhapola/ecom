@@ -16,7 +16,7 @@ class UserProfile(models.Model):
       return self.user.username
 
 
-
+#feedback form
 class posts(models.Model):
     name = models.CharField(max_length=400)
     phone = models.IntegerField()
@@ -37,11 +37,43 @@ class data(models.Model):
     def __str__(self):
       return self.name
 
+#cart data of user
 class cart(models.Model):
+    CHOICES = (('initial', 'int'), ('cod', 'cod'), ('payment_done', 'payment_done'),('delievered', 'delieverd'))
     name = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(data, on_delete=models.CASCADE)
-
-
+    quantity = models.IntegerField(default=1)
+    status=models.CharField(max_length=100, choices=CHOICES, default='int')
 
     def __str__(self):
+
         return '%s' % (self.name)
+#order detail
+class Orderdetail(models.Model):
+    name = models.CharField(max_length=400)
+    buyername = models.CharField(max_length=400)
+    address = models.CharField(max_length=400)
+    state = models.CharField(max_length=400)
+    phone = models.IntegerField()
+    def __str__(self):
+
+        return '%s' % (self.name)
+#buy now
+class buynow(models.Model):
+    buyer_name=models.ForeignKey(User, on_delete=models.CASCADE)
+    buyer_item = models.ForeignKey(data, on_delete=models.CASCADE)
+    delieve=models.ForeignKey(Orderdetail, on_delete=models.CASCADE, default='')
+
+    def __str__(self):
+        return '%s' % (self.buyer_name)
+
+#deliever
+class deliever(models.Model):
+    delieve=models.ForeignKey(Orderdetail, on_delete=models.CASCADE)
+
+    Total_price = models.IntegerField()
+    item = models.ManyToManyField(data)
+
+    def __str__(self):
+        return '%s' % (self.delieve)
+

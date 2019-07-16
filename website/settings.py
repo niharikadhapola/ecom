@@ -17,7 +17,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+#for image root
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -42,9 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'stripe',
     'user',
     'info',
 ]
+#for forgot password
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,3 +140,14 @@ STATICFILES_FINDERS = [
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
 ]
+#for email verification
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ecomwebsite40@gmail.com'
+EMAIL_HOST_PASSWORD = 'ecom@1234'
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# stripe
+STRIPE_SECRET_KEY = 'sk_test_YyTaM80VRnqOP64lzRMdaQKD00RhhDcuq4'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_g66zAMXW5e8WC3dVL7Y2YMKg002BEqP47x'

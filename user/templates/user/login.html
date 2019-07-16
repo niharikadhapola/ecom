@@ -2,23 +2,35 @@
 {% load static %}
 
  {% block content %}
+
+
  <div class="upload">
         <center>
 <div class="sign_up_form">
-          <img src="{% static './user/img/i.png' %}" class="icon" height="100" width="100"><br>
 
-      <h2>Login here </h2>
+      <h2 style=" font-family: serif;font-size: 26px;font-kerning: normal;color:black;">Login here </h2>
 <form method="post" >
-
+ {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success"> {{ message }}</div>
+      {% endfor %}
+{% endif %}
+<br>
           {% csrf_token %}
           {# A more "HTML" way of creating the login form#}
+<center>
           <h3><label for="username"></label>
-          <input type="text" class="input-box" name="username" placeholder="Username"><br>
+          <input type="text" class="form-control" name="username" placeholder="Username" required style="width :250px;font-size: 18px;">
 <label for="password"></label>
-          <input type="password" class="input-box" name="password" placeholder="Password"><br>
-              <button type="submit"><h3 class="nih"><strong>Login</strong></h3></button>  </h3><br>
-</form><br><br>
+          <input type="password" class="form-control" name="password" placeholder="Password" required style="width :250px;font-size: 18px;"><br><br>
+             <center> <button type="submit" class="btn btn-primary btn-round btn-block"style="width:130px;"><h3>LOGIN</h3></button></center>
+               <br> <a  href="{% url 'password_reset' %}"> <strong>password reset</strong>  </a>
+          </h3>
+</center></form><br><br>
 
 </div></center></div>
  <br><br><br>
+
+
+
 {% endblock %}

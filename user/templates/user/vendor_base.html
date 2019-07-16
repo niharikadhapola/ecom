@@ -6,34 +6,58 @@
     <meta charset="utf-8">
     <title>Base</title>
     <style>
-    .card-group,.card-img-top{
-     padding: 5px;5px;5px;
+    nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    transition: 0.8s all;
     }
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: 100px;
+    nav ul{
+      float:right;
+      margin-right:50px;
+    }
+    nav ul li:hover{
+      background-color:#BC8F8F;
+    }
+    nav ul li a{
+    test-decoration: none;
+    color:white;
+    padding: 30px;
+    }
+.nav-link{
+color: black;
 }
+
+ .container{
+ width:1300px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 2% auto 0;
+ text-align: left;
+ font-family: sans-serif;
+ }
     .h1{
     color:#1c8adb;
     }
+
  .product_list{
- width:1000px;
+ width:1300px;
  box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
  background: #fff;
  padding 20px;
- margin : 8% auto 0;
+ margin : 6% auto 0;
  text-align: left;
  }
      .form{
- width:400px;
+  justify-content:center;
+  width:400px;
  box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
  background: #fff;
- padding 20px;
- margin : 8% auto 0;
+ padding :20px;
+ margin-Top: 10px;
  text-align: center;
  }
+
   .feed_form{
  width:1000px;
  box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
@@ -56,89 +80,55 @@
 {
 color:white;
 }
- .icon{
- margin-top: -50px;
- }
 
-body{
-background-repeat:no-repeat;
- background-image: url("{% static './user/img/spot.jpg' %}");
 
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: sans-serif;
-
-}
-
-.input-box{
-border-radius: 20px;
-padding 10px;
- margin : 10px 0;
- width:70%;
- border:1px solid #999;
-outline: none;
-}
-button{
-border-radius: 20px;
-padding 10px;
- margin : 10px 0;
- width:70%;
- border:1px solid #999;
-outline: none;
-background-color:#1c8adb;
-}
 .nih{
 color:white
 
 }
     .upload{
-  padding-top: 10px;
+  padding-top: 5px;
 
     }
 
-    .nav-link{
-    color:white
-    }
 
-.navbar{
-   background-color: black;
-}
-.nav-link:hover {
-  background-color: #1c8adb;
-   transition: 0.3s;
-}
-.page-footer {
-   bottom: 0;
-   width: 100%;
-   background-color: black;
-}
+<!--.nav-link:hover {-->
+<!--  background-color: #1c8adb;-->
+<!--   transition: 0.3s;-->
+<!--}-->
+
 
     </style>
 </head>
-  <body><h3>
+  <body>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<h3>
 
-    <nav class="navbar fixed-top  ">
-{# Django Home Link / Admin Link / Register Link#}
+ {% if user.is_authenticated %}
+      <nav class=" navbar-fixed-top bg-dark" style="width:100%;height:50px;  padding-right:90px;padding-left:90px; Line-height: 50px;">
+        <img src="{% static './user/img/ecom.png' %}" width="80" height="60" >
+        <ul>
 
-          {# Some logic on what to display for last item#}
-          {% if user.is_authenticated %}
-            <a class="nav-link" href="{% url 'show_vendor_detail' %}"> <strong>my list</strong> </a>
-            <a class="nav-link" href="{% url 'detail' %}"> <strong>detail</strong> </a>
 
-            <a class="nav-link" href="{% url 'logout' %}"><strong>Logout</strong></a>
-          <a style="color :white"><strong>{{ user.username }}</strong></a>
-
+<li><a style="text-decoration:none"  href="{% url 'show_vendor_detail' %}">my list</a></li>
+              <li><a style="text-decoration:none" href="{% url 'detail' %}"> detail</a></li>
+          <li><a style="text-decoration:none"  href="{% url 'logout' %}">Logout</a></li>
+<li><a style="text-decoration:none"  href="#" style="color :black">{{ user.username }}</a></li>
 <!--            <a class="nav-link" href="{% url 'post' %}"> <strong>post</strong> </a>-->
+<li><a style="text-decoration:none"  href="{% url 'show_order' %}" style="color :black">Your Order</a></li>
+            {% else %}
+           <nav style="width:100%;height:80px;  padding-right:90px;padding-left:90px; Line-height: 80px;">
+        <img src="{% static './user/img/ecom.png' %}" width="80" height="60" >
+          <li><a style="text-decoration:none"  href="{% url 'register' %}">Register</a></li>
 
-            {% else %} <a class="nav-link" href="{% url 'register' %}"><strong>Register</strong></a>
-            <a class="nav-link" href="{% url 'user_login' %}"> <strong>login</strong>  </a>
-            <a class="nav-link" href="{% url 'vendor_login' %}"> <strong>vendor login</strong>  </a>
-
+           <li><a style="text-decoration:none"  href="{% url 'user_login' %}"> login  </a></li>
+<li><a style="text-decoration:none"  href="{% url 'vendor_login' %}"> vendor login  </a></li>
 
 {% endif %}
-    </nav><br><br><br>
+           </nav>
+    </ul></nav>
+
+   <br><br><br>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -152,25 +142,23 @@ color:white
 
  {% block content %}
     {% endblock %}
-
+</h3>
      <br><br><br><br><br><br>
      <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
-    <div class="footer-color">
-<h3>
-<strong>
+<footer class="page-footer font-small blue pt-4" style="border-top:  1px solid ">
   <!-- Footer Links -->
+  <div class="nav-link">
   <div class="container-fluid text-center text-md-left">
 
     <!-- Grid row -->
     <div class="row">
 
       <!-- Grid column -->
-      <div class="col-md-6 mt-md-0 mt-3">
+      <div class="col-md-3 mt-md-0 mt-3">
 
         <!-- Content -->
-        <h5 class="text-uppercase">ecom site</h5>
-        <p>The most trusted site contains branded items and attractive offers</p>
+        <h4 class="text-uppercase">ecom site</h4>
+        <p><h5>The most trusted site contains branded items and attractive offers</h5></p>
 
       </div>
       <!-- Grid column -->
@@ -181,7 +169,7 @@ color:white
       <div class="col-md-3 mb-md-0 mb-3">
 
         <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
+        <h4 class="text-uppercase">Links</h4>
 
         <ul class="list-unstyled">
           <li>
@@ -195,13 +183,11 @@ color:white
         </ul>
 
       </div>
-      <!-- Grid column -->
-
-      <!-- Grid column -->
+            <!-- Grid column -->
       <div class="col-md-3 mb-md-0 mb-3">
 
         <!-- Links -->
-        <h5 class="text-uppercase">Links</h5>
+        <h4 class="text-uppercase">Links</h4>
 
         <ul class="list-unstyled">
           <li>
@@ -216,20 +202,35 @@ color:white
       </div>
       <!-- Grid column -->
 
+      <!-- Grid column -->
+ <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+      <h5>Flipkart Internet Private Limited,
+          Buildings Alyssa, Begonia &
+        Clove Embassy Tech Village,
+        Outer Ring Road, Devarabeesanahalli Village,
+        Bengaluru, 560103,
+        Karnataka, India
+        CIN : U51109KA2012PTC066107
+        Telephone: 1800 208 9898</h5>
+      </div>
+
     </div>
     <!-- Grid row -->
 
   </div>
   <!-- Footer Links -->
 
-  <!-- Copyright -->
+  <!-- Copyright --><strong>
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
     <a href="http://127.0.0.1:8000/user/"> Mysite</a>
-  </div>
+  </div></strong></div>
   <!-- Copyright -->
-</strong></h3></div>
+
 </footer>
-<!-- Footer -->
-    <!-- Latest compiled and minified CSS --></h3>
+
   </body>
 </html>
+

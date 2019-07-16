@@ -1,17 +1,62 @@
 
 <!--show items to cart as per the user, who added it to cart-->
-{% extends "user/base.html" %}
+{% extends "user/product_base.html" %}
  {% block content %}
-<div class="product_list">
-<div class="card-group">
-{% for post in object_list %}
 
-  <img class="card-img-top" src="{{ post.item.img.url }}" style="width:200px; height: 200px;">
-  <div class="card-body">
-    <h4 class="card-title">{{post.item.name}}</h4>
-    <h4 class="card-text">Rs&nbsp;{{post.item.price}}</h4>
-  </div>
+{% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success"> {{ message }}</div>
 
-            {% endfor %}
-    </div></div>
-{% endblock %}
+      {% endfor %}
+{% endif %}
+
+<div class="container">
+    <br><strong>Shopping Cart </strong>
+<br><br>
+    <table class="table">
+          <thead>
+      <tr>
+        <th></th>
+        <th></th>
+<th>quantity</th>
+        <th>Per Quantity Price</th>
+          <th></th>
+      </tr>
+    </thead>
+        <tbody>
+         {% if count > 0 %}
+        {% for post in object_list %}
+
+        <tr>
+
+            <td ><a href="{% url 'all' post.item.id %}">
+                <img src="{{ post.item.img.url }}" style="width:100px; height: 100px;" ></a></td>
+            <td >{{post.item.name}}</td>
+<!--            <td >{{post.item.vendor_name.username}}</td>-->
+            <td>
+             <a href="{% url 'update_cart' post.id %}" class="btn btn-light"><h4>+</h4></a>{{post.quantity}}
+                         <a href="{% url 'decrease_cart' post.id %}" class="btn btn-light"><h4>-</h4></a></td>
+
+                        <td >Rs {{post.item.price}}</td>
+
+            <td><a href="{% url 'delete_cart' post.id %}" class="btn btn-danger"><h4>Delete</h4></a></td>
+
+        </tr>
+
+         {% endfor %}
+
+        <tr>
+            <td></td><td><td><strong>Total price :</strong></td>
+            <td>Rs {{total}}</td>
+            <td><a href="{% url 'order' %}" class="btn btn-success" ><h3>Checkout</h3></a></td></tr>
+        </tbody>
+</table><br><br><br><br>
+{% else %}
+    <h3>Your Cart is empty</h3>
+{% endif %}
+
+
+
+
+
+{% endblock %}</div>

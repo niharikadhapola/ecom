@@ -1,0 +1,316 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    <style>
+    nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    transition: 0.8s all;
+    }
+    nav ul{
+      float:right;
+      margin-right:30px;
+    }
+    nav ul li:hover{
+      background-color:#BC8F8F;
+    }
+    nav ul li a{
+    test-decoration: none;
+    color:white;
+    padding: 40px;
+    }
+.nav-link{
+color: black;
+}
+
+
+
+
+     .row{
+     padding: 30px;
+    }
+
+    .h1{
+    color:#1c8adb;
+    }
+
+ .container{
+ width:1300px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 2% auto 0;
+ text-align: left;
+ font-family: sans-serif;
+ }
+  .container h2{
+ background: #0062cc;
+ color:#fff;
+  width:200px;
+  height:5px;
+  font-size: 24px;
+ padding :30px;
+ }
+ .container h2::after{
+content: '';
+border-top: 61px solid #0062cc;
+border-right: 52px solid Transparent;
+position: relative;
+left: 75px;
+top: 30px;
+ }
+
+.overlay
+{
+display: block;
+opacity:0;
+position: absolute;
+top:10%;
+margin-left:0;
+width: 70px;
+}
+
+.product-top:hover .overlay
+{
+opacity:1;
+margin-left:5%;
+transition: 0.5s;
+}
+.overlay .fa
+{
+cursor:pointer;
+background-color:#555;
+height:35px;
+width:35px;
+font-size: 20px;
+padding:7px;
+margin:5px;
+margin-bottom: 5%;
+}
+.overlay .btn-secondary
+{
+background: Transparent !important;
+border: none !important;
+box-shadow:none !important;
+}
+.product-bottom h3{
+font-size: 20px;
+font-weight: bold;
+}
+.product-bottom h5{
+font-size: 15px;
+padding-bottom: 10px;
+
+}
+
+
+
+     .form{
+ width:400px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 8% auto 0;
+ text-align: center;
+ }
+  .feed_form{
+ width:1000px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding 20px;
+ margin : 8% auto 0;
+ text-align: center;
+ }
+
+
+.footer-color
+{
+color:white;
+}
+ .icon{
+ margin-top: -50px;
+ }
+
+body{
+
+  font-family: sans-serif;
+
+}
+
+.input-box{
+border-radius: 20px;
+padding 10px;
+ margin : 10px 0;
+ width:70%;
+ border:1px solid #999;
+outline: none;
+}
+
+.nih{
+color:white
+
+}
+
+.page-footer {
+   bottom: 0;
+   width: 100%;
+}
+
+ .sign_up_form{
+ width:400px;
+ box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
+ background: #fff;
+ padding :30px;
+ margin : 3% auto 0;
+ text-align: center;
+ }
+
+.upload{
+  padding-top: 10px;
+opacity: .9;
+    }
+
+    </style>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+  <body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<h3>
+
+
+      <nav class="navbar-fixed-top bg-dark"  style="width:100%;height:50px ; padding-right:90px;padding-left:90px; Line-height: 50px; ">
+        <img src="{% static './user/img/ecom.png' %}" width="80" height="40" >
+        <ul>
+
+          <li><a style="text-decoration:none" href="{% url 'index' %}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
+              <li><a style="text-decoration:none" href="{% url 'show' %}">Product</a></li>
+                    {% if user.is_authenticated %}
+<li><a style="text-decoration:none" href="{% url 'logout' %}">Logout</a></li>
+              <li><a style="text-decoration:none" href="{% url 'list' %}" style="color :black">{{ user.username }}</a></li>
+          <li><a style="text-decoration:none" href="{% url 'show_cart' %}"><i class="fa fa-shopping-cart fa-lg " aria-hidden="true">({{count}})</i></a></li>
+
+<!--            <a class="nav-link" href="{% url 'post' %}"> <strong>post</strong> </a>-->
+
+            {% else %} <li><a style="text-decoration:none" href="{% url 'register' %}">Register</a></li>
+
+           <li><a style="text-decoration:none" href="{% url 'user_login' %}">Login  </a></li>
+
+
+{% endif %}
+
+    </ul></nav>
+
+   <br><br><br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+ {% block content %}
+    {% endblock %}
+</h3>
+     <br><br><br><br><br><br>
+     <!-- Footer -->
+<footer class="page-footer font-small blue pt-4" style="border-top:  1px solid ">
+  <!-- Footer Links -->
+  <div class="nav-link">
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h4 class="text-uppercase">ecom site</h4>
+        <p><h5>The most trusted site contains branded items and attractive offers</h5></p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h4 class="text-uppercase">Links</h4>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">google</a>
+          </li>
+          <li>
+            <a href="#!">yahoo</a>
+          </li>
+
+
+        </ul>
+
+      </div>
+            <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h4 class="text-uppercase">Links</h4>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">facebook</a>
+          </li>
+          <li>
+            <a href="#!">twitter</a>
+          </li>
+
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+ <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+      <h5>Flipkart Internet Private Limited,
+          Buildings Alyssa, Begonia &
+        Clove Embassy Tech Village,
+        Outer Ring Road, Devarabeesanahalli Village,
+        Bengaluru, 560103,
+        Karnataka, India
+        CIN : U51109KA2012PTC066107
+        Telephone: 1800 208 9898</h5>
+      </div>
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright --><strong><br>
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="http://127.0.0.1:8000/user/"> Mysite</a>
+  </div></strong></div>
+  <!-- Copyright -->
+
+</footer>
+
+  </body>
+</html>
