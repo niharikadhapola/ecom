@@ -126,27 +126,27 @@ img {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <h3>
 
- <nav class="navbar-fixed-top bg-dark"  style="width:100%;height:50px ; padding-right:90px;padding-left:90px; Line-height: 50px; ">
-        <img src="{% static './user/img/ecom.png' %}" width="80" height="40" >
+ <nav class="navbar-fixed-top bg-dark"  style="width:100%;height:50px; padding-right:90px;padding-left:90px; Line-height: 50px; ">
+        <img src="{% static './user/img/ecom.png' %}" width="80" height="30" >
         <ul>
 
-          <li><a style="text-decoration:none" href="{% url 'index' %}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
+          <li><a href="{% url 'index' %}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
               <li><a style="text-decoration:none" href="{% url 'show' %}">Product</a></li>
                     {% if user.is_authenticated %}
-<li><a style="text-decoration:none" href="{% url 'logout' %}">Logout</a></li>
-              <li><a style="text-decoration:none" href="{% url 'list' %}" style="color :black">{{ user.username }}</a></li>
-          <li><a style="text-decoration:none" href="{% url 'show_cart' %}"><i class="fa fa-shopping-cart fa-lg " aria-hidden="true">({{count}})</i></a></li>
-
+                    <li><a style="text-decoration:none" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a style="text-decoration:none" href="{% url 'list' %}" style="color :black">{{ user.username }}</a></li>
+                    <li><a href="{% url 'show_cart' %}"><i class="fa fa-shopping-cart " aria-hidden="true">({{count}})</i></a></li>
 <!--            <a class="nav-link" href="{% url 'post' %}"> <strong>post</strong> </a>-->
 
-            {% else %} <li><a style="text-decoration:none" href="{% url 'register' %}">Register</a></li>
+                    {% else %}
+                    <li><a style="text-decoration:none" href="{% url 'register' %}">Register</a></li>
+                    <li><a style="text-decoration:none" href="{% url 'user_login' %}">Login </a></li>
+                    <li><a style="text-decoration:none" href="{% url 'feed' %}"> Feedback</a></li>
 
-           <li><a style="text-decoration:none" href="{% url 'user_login' %}">Login  </a></li>
-<li><a style="text-decoration:none" href="{% url 'feed' %}"> Feedback</a></li>z
+            {% endif %}
+        </ul>
+     </nav>
 
-{% endif %}
-
-    </ul></nav>
 
 
   <div class="container" >
@@ -154,13 +154,13 @@ img {
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-<img src="{% static './user/img/cloth.png' %}" class="d-block w-100" alt="...">    </div>
+      <img src="{% static './user/img/shoe.jxr' %}" class="d-block w-100" alt="...">
+    </div>
     <div class="carousel-item">
       <img src="{% static './user/img/sale.gif' %}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-        <img src="{% static './user/img/bag.gif' %}" class="d-block w-100" alt="...">
-
+      <img src="{% static './user/img/cloth.png' %}" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

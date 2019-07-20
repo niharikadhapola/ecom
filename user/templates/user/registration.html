@@ -4,7 +4,9 @@
 
 <head>
 <meta charset="utf-8">
-    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
       integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -12,7 +14,6 @@
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -36,13 +37,13 @@ nav ul li{
     nav ul li a{
     test-decoration: none;
     color:#fff;
-    padding: 30px;
+    padding: 40px;
     }
     .nav-link{
 color: white;
 }
 form {
-width:400px;
+width:300px;
 justify-content:center;
 }
 body{
@@ -56,19 +57,11 @@ background-repeat:no-repeat;
 
 }
 
-.sign_up_form{
- width:450px;
- box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
- background: #fff;
- padding :20px;
- margin : 3% auto 0;
- text-align: center;
- }
-
-.upload{
-  padding-top: 10px;
-<!--opacity: .9;-->
-    }
+.page-footer {
+   bottom: 0;
+   width: 100%;
+   background-color: rgba(0,0,0,0.5);
+}
 
 
 
@@ -78,7 +71,7 @@ background-repeat:no-repeat;
 </head>
 
 <body class="theme-black">
- <nav style="width:100%;height:50px;background-color:rgba(0,0,0,0.5);  Line-height: 50px;">
+ <nav style="width:100%;height:50px;background-color:rgba(0,0,0,0.5);  padding-right:90px;padding-left:90px; Line-height: 50px;">
         <img src="{% static './user/img/ecom.png' %}" width="80" height="40" >
         <ul>
 
@@ -100,20 +93,29 @@ background-repeat:no-repeat;
 
     </ul></nav>
 <br><br>
+<div class="authentication">
+    <div class="container">
 
- <div class="upload">
-        <center>
-<div class="sign_up_form">
-        <br> <br>
+            <div class="row">
+
+
+                <div class="card" style="width: 30rem;margin-Left:330px;">
+  <div class="card-body">
+
+
+
+<div style="margin-Left:70px;margin-top:10px;">
+
+                  <br> <br>
                   <h1 class="logo"style=" font-family: serif;
-              font-size: 26px;font-kerning: normal;color:black;"> Register Here</h1>
+              font-size: 26px;font-kerning: normal;margin-left:70px;color:black;"> Register Here</h1>
      {% if registered %}
         <h1>Thank you for registering!</h1>
       {% else %}
 
 
 
-<form method="POST" >
+<form  enctype="multipart/form-data" method="POST" class="form">
     {% if messages %}
       {% for message in messages %}
       <div class="alert alert-success"> {{ message }}</div>
@@ -134,46 +136,49 @@ background-repeat:no-repeat;
 
                             <div class="row">
                               <div class="col-md-6">
-
+                            <div class="input-group">
                                 <input type="text" class="form-control" placeholder="First Name" name= "first_name" required>
 
-                            </div>
+                            </div></div>
                             <div class="col-md-6">
-
+                            <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Last Name" name= "last_name" required>
 
-                            </div> </div><br>
-
+                            </div></div> </div><br>
+                            <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Enter User Name" name= "username" required>
 
-                            <br>
-
+                            </div><br>
+                            <div class="input-group">
                                 <input type="email" class="form-control" placeholder="Enter Email" name= "email" required>
 
-                            <br>
+                            </div><br>
                             <div class="row">
                               <div class="col-md-6">
-
+                            <div class="input-group">
                              <input type="password" class="form-control" name="password" placeholder="Password"><br></div>
 
-
-                            <div class="col-md-6">
-
-                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"><br></div>
                             </div>
-
-                                <input type="address" class="form-control" name="address" placeholder="Address"><br>
+                            <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"><br></div>
+                            </div></div><br>
+                            <div class="input-group">
+                                <input type="address" class="form-control" name="address" placeholder="Address"><br></div>
 
                             <br><br>
                           <center>  <button type="submit" class="btn btn-primary btn-round btn-block"style="width:130px;">SIGN UP</button>
                            <br> <a  href="{% url 'vendor_register' %}"><strong>vendor register</strong></a><br><br>
 
-                          </center><br>
+                          </center></form><br>
 
-        {% endif %}
-</form></div><br>
-        </center></div>    </div>
-
+</form>        {% endif %}
+ </div><br>
+                </div>
+            </div></div>
+        </div>
+    </div>
+</div>
 <br> <br>
 
 

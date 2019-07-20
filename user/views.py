@@ -5,6 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth import login, authenticate,logout
 from .forms import *
+from django.contrib.auth.models import User
 from .models import *
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -110,12 +111,11 @@ def buy_charge(request): # new
     pk = request.session.get("pk")
     id = data.objects.get(id=pk)
     print(id.price)
-    k=id.price
     post_count = 0
     if request.method == 'POST':
         charge = stripe.Charge.create(
 
-            amount=k*100,
+            amount=id.price*100,
             currency='inr',
             description='A Django charge',
             source=request.POST['stripeToken']
@@ -398,7 +398,6 @@ def show_order(request, template_name='user/showorder.html'):
     return render(request, template_name, list)
 
 #show individual item
-@login_required(login_url='user_login')
 def all(request, pk,template_name='user/all.html'):
     Product = data.objects.get(id=pk)
     list = {}
@@ -412,7 +411,7 @@ def all(request, pk,template_name='user/all.html'):
 
 #add items to cart
 @login_required(login_url='user_login')
-def add_cart(request, pk):
+def add_cart(request, pk,template_name='user/cart.html'):
     try:
         post = cart.objects.get(item_id=pk ,name=request.user)
         post.quantity = post.quantity + 1
@@ -422,16 +421,16 @@ def add_cart(request, pk):
     except ObjectDoesNotExist:
         form = joinForm(request.POST)
 
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.name = request.user
+            id = data.objects.get(id=pk)
+            instance.item = id
+            instance.save()
 
-        instance = form.save(commit=False)
-        instance.name = request.user
-        id = data.objects.get(id=pk)
-        instance.item = id
-        instance.save()
-
-        messages.success(request, 'item is added to cart')
-        return redirect('show_cart')
-
+            messages.success(request, 'item is added to cart')
+            return redirect('show_cart')
+        return render(request, template_name, {'form': form})
 
 
         #cart.objects.get(item=id,name=request.user)
@@ -441,7 +440,6 @@ def add_cart(request, pk):
 
 
 #buy now to address
-@login_required(login_url='user_login')
 def buyordered(request,pk, template_name='user/buyorder.html'):
     form = order(request.POST or None)
     request.session['pk'] = pk
@@ -456,23 +454,23 @@ def buyordered(request,pk, template_name='user/buyorder.html'):
     return render(request, template_name, {'form': form,'object':Product})
 
 #buy now
-def buy_now(request, pk):
+def buy_now(request, pk,template_name='user/buy.html'):
 
 
     form = buyForm(request.POST )
 
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.buyer_name=request.user
+        request.session['address'] = pk
+        request.session['name'] = request.user.username
 
-    instance=form.save(commit=False)
-    instance.buyer_name=request.user
-    request.session['address'] = pk
-    request.session['name'] = request.user.username
-
-    return redirect('buy_home')
+        return redirect('buy_home')
         #cart.objects.get(item=id,name=request.user)
         #instance.save()
 
 
-
+    return render(request, template_name,{'form':form})
 
 
 #show items to cart as per the user, who added it to cart
@@ -526,7 +524,7 @@ def delete_cart(request, pk, template_name='user/delete.html'):
     return render(request, template_name, {'object': post})
 
 #save address and show address
-@login_required(login_url='user_login')
+
 def ordered(request, template_name='user/order.html'):
     form = order(request.POST or None)
     Product = Orderdetail.objects.filter(buyername=request.user.username)
@@ -559,23 +557,27 @@ def delete_address(request, pk, template_name='user/delete.html'):
 
 
 #deliver to this address
-def place(request,pk):
+def place(request,pk, template_name='user/place.html'):
     myform = mydel(request.POST)
     post = cart.objects.filter(name=request.user, status='int')
     list = {}
     list['object_list'] = post
+
+
     a = 0
     b = 0
     for post in list['object_list']:
         a = a + post.item.price
     print(a)
 
-    instance = myform.save(commit=False)
+    if myform.is_valid():
+        instance = myform.save(commit=False)
 
-    request.session['insta'] =pk
-    request.session['instat'] =a
+        request.session['insta'] =pk
+        request.session['instat'] =a
 
-    return redirect('home')
+        return redirect('home')
 
+    return render(request, template_name, {'myform': myform})
 
 
