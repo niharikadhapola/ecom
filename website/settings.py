@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'stripe',
     'user',
     'info',
-    'django-heroku'
 ]
 #for forgot password
 

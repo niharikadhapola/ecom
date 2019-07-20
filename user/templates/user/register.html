@@ -1,0 +1,72 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+ {% block content %}
+
+
+ <div class="upload">
+        <center>
+<div class="sign_up_form">
+
+      <h2 style=" font-family: serif;font-size: 26px;font-kerning: normal;color:black;">Login here </h2>
+
+<form  enctype="multipart/form-data" method="POST" class="form">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success"> {{ message }}</div>
+      {% endfor %}
+{% endif %}
+ {% for error in  user_form.username.errors %}
+         <p class="text-danger">{{ error }}</p>
+    {% endfor %}
+     {% for error in  user_form.email.errors %}
+         <p class="text-danger">{{ error }}</p>
+    {% endfor %}
+     {% for error in  user_form.non_field_errors%}
+         <p class="alert alert-success">{{ error }}</p>
+    {% endfor %}
+<br><br>
+    {% csrf_token %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="First Name" name= "first_name" required>
+
+            </div></div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Last Name" name= "last_name" required>
+
+            </div></div> </div><br>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Enter User Name" name= "username" required>
+
+    </div><br>
+    <div class="input-group">
+        <input type="email" class="form-control" placeholder="Enter Email" name= "email" required>
+    </div><br>
+    <div class="row">
+        <div class="col-md-6"><div class="input-group">
+            <input type="password" class="form-control" name="password" placeholder="Password"><br></div>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"><br></div>
+        </div></div><br>
+    <div class="input-group">
+        <input type="address" class="form-control" name="address" placeholder="Address"><br></div>
+
+    <br><br><center>  <button type="submit" class="btn btn-primary btn-round btn-block"style="width:130px;">SIGN UP</button>
+    <br> <a  href="{% url 'vendor_register' %}"><strong>vendor register</strong></a><br><br>
+
+                          </center></form><br>
+
+</form>        {% endif %}<br><br>
+
+</div></center></div>
+ <br><br><br>
+
+
+
+{% endblock %}
