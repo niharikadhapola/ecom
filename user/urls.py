@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^success/$', views.success, name='success'),
     url(r'^show/$', views.show, name='show'),
     url(r'^cart/(?P<pk>\d+)$', views.add_cart, name='add_cart'),
-    path('', views.HomePageView.as_view(), name='home'),
+    path('shop', views.HomePageView.as_view(), name='home'),
     path('buy', views.buy_HomePageView.as_view(), name='buy_home'),
     url(r'^buy_charge/$', views.buy_charge, name='buy_charge'),
 
@@ -36,8 +36,7 @@ url(r'^show_order/$', views.show_order, name='show_order'),
     url(r'^vendor_register/$',views.vendor_register,name='vendor_register'),
     url(r'^logout/$', views.user_logout, name='logout'),
 
-    url(r'^home/$', views.index, name='index'),
-    url(r'^feed/$', views.feed, name='feed'),
+    url(r'^$', views.index, name='index'),    url(r'^feed/$', views.feed, name='feed'),
     url(r'^login/$', views.user_login, name='user_login'),
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='user/password_reset_form.html'), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='user/password_reset_done.html'), name='password_reset_done'),

@@ -87,7 +87,7 @@ def charge(request): # new
         instance = myform.save(commit=False)
         id = Orderdetail.objects.get(id=pk)
         instance.delieve = id
-        instance.Total_price = tot
+        instance.Total_price = a
         instance.save()
         for post in list['object_list']:
             instance.item.add(post.item)
@@ -398,6 +398,7 @@ def show_order(request, template_name='user/showorder.html'):
     return render(request, template_name, list)
 
 #show individual item
+@login_required(login_url='user_login')
 def all(request, pk,template_name='user/all.html'):
     Product = data.objects.get(id=pk)
     list = {}
@@ -440,6 +441,7 @@ def add_cart(request, pk,template_name='user/cart.html'):
 
 
 #buy now to address
+@login_required(login_url='user_login')
 def buyordered(request,pk, template_name='user/buyorder.html'):
     form = order(request.POST or None)
     request.session['pk'] = pk
@@ -510,8 +512,11 @@ def update_cart(request, pk):
 def decrease_cart(request, pk):
     #host = get_object_or_404(cart, pk=pk)
     post=cart.objects.get(id=pk)
-    post.quantity=post.quantity-1
-    post.save()
+    if post.quantity==1:
+        post.delete()
+    else:
+        post.quantity=post.quantity-1
+        post.save()
 
     return redirect('show_cart')
 

@@ -2,28 +2,34 @@
  {% block content %}
 
 <div class="container">
-             Add Adress!<br>
+<div class="row">
+  <div class="col-sm-6">
+        Add new Adress For Delievery!<br>
 <br>
 
      <form  method="post">{% csrf_token %}
-          {{ form.as_p }}
+
+          <input type="text" class="form-control" name="name" placeholder="name" required style="width :300px;font-size: 15px;"><br>
+          <input type="text" class="form-control" name="address" placeholder="address" required style="width :300px;font-size: 15px;"><br>
+          <input type="text" class="form-control" name="state" placeholder="state" required style="width :300px;font-size: 15px;"><br>
+          <input type="text" class="form-control" name="phone" placeholder="phone" required style="width :300px;font-size: 15px;"><br>
 
 
         <input class="btn btn-primary" type="submit" value="Submit"/>
-     </form><br><br></div>
-<div class="container">
-    <br><br>
+     </form></div>
+ <div class="col-sm-6">
+<div class="row">
      {% for post in object %}
-
+ <div class="col-md-6" >
             {{post.name}}<br>
                 {{post.address}}<br>
-                 {{post.state}}<br>
+                 {{post.state}}<br><br>
           <a href="{% url 'buy_now' post.id %}" class="btn btn-secondary">deliever here</a><br><br><br>
+ </div>
 
 
+    {% endfor %}</div>
+ </div>
+</div></div>
 
-         {% endfor %}
-
-
-</div>
 {% endblock %}
